@@ -9,14 +9,27 @@ import { AuthModule as AppAuthModule } from './auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './home/home.module';
 import { NavComponent } from './nav/nav.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AdminLayoutComponent } from './dashboard/components/admin-layout/admin-layout.component';
+import { GuestLayoutComponent } from './guest-layout/guest-layout.component';
 @NgModule({
-  declarations: [AppComponent, NavComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    SidebarComponent,
+    NavbarComponent,
+    AdminLayoutComponent,
+    GuestLayoutComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppAuthModule,
     HomeModule,
+    NgbModule,
     AuthModule.forRoot({
       domain: 'dev-h1odmi8l.us.auth0.com',
       clientId: '0mMmLt1dk4LwuPWDsjtA0qhbrVO0JT9R',
