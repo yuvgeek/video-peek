@@ -9,6 +9,11 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   { path: 'profile', component: UserProfileComponent },
+  {
+    path: 'events',
+    loadChildren: () =>
+      import('../events/events.module').then((m) => m.EventsModule),
+  },
 ];
 
 @NgModule({

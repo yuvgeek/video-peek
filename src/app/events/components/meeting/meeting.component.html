@@ -1,0 +1,18 @@
+My Id : {{ myPeerId }}
+
+<div class="d-flex">
+  <video
+    id="my-camera"
+    width="300"
+    height="300"
+    autoplay="autoplay"
+    muted="true"
+  ></video>
+
+  <video id="peer-camera" width="300" height="300" autoplay="autoplay"></video>
+</div>
+
+<input type="text" [(ngModel)]="receiverPeerId" />
+
+<button (click)="connect()">Connect</button>
+<button *ngIf="isConnectionEstablished" (click)="call()">Call</button>

@@ -20,6 +20,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'ni-single-02 text-yellow',
     class: '',
   },
+  {
+    path: '/events',
+    title: 'EVENTS',
+    icon: 'ni-events-02 text-yellow',
+    class: '',
+  }
 ];
 
 @Component({
