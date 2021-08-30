@@ -1,14 +1,21 @@
-
 <!-- Sidenav -->
-<app-sidebar></app-sidebar>
+<!-- <app-sidebar></app-sidebar> -->
 <div class="main-content">
   <!-- Top navbar -->
   <!-- <app-nav></app-nav> -->
-  <app-navbar></app-navbar>
-  <!-- Pages -->
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-2 pr-0">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-10 pl-0">
+      <!-- Pages -->
+      <app-navbar></app-navbar>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
   <div class="container-fluid">
     <!-- <p>footer here</p> -->
   </div>
 </div>
-

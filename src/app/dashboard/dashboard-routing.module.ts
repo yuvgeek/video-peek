@@ -4,10 +4,10 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  // },
   { path: 'profile', component: UserProfileComponent },
   {
     path: 'events',

@@ -10,42 +10,47 @@
   </div>
 </div>
 
+<div *ngIf="isLoading">
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</div>
+
 <div class="container-fluid">
-  <div class="row">
-    <!-- <div class="col-md-4">
-        <mat-label>Choose an option</mat-label>
-        <mat-select>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
-        </mat-select>
-      </div> -->
-    <div class="col-md-12 mt-4">
-      <div class="card p-4">
-        <h2>Learn Angular in depth</h2>
-        <p>
-          Angular is a TypeScript-based free and open-source web application
-          framework led by the Angular Team at Google and by a community of
-          individuals and corporations. Angular is a complete rewrite from the
-          same team that built AngularJS
-        </p>
-        <div class="d-flex align-items-center">
-          <div>
-            <span class="h3">Skill: </span>
-            <span>Angular</span>
-          </div>
+  <div class="mt-4">
+    <div
+      class="card p-4"
+      *ngFor="let event of events; first as isFirst"
+      [class.mt-4]="!isFirst"
+    >
+      <h2>{{ event.title }}</h2>
+      <p>
+        {{ event.description }}
+      </p>
+      <div class="d-flex align-items-center">
+        <div>
+          <span class="h3">Skill: </span>
+          <span>{{ event.skillName }}</span>
+        </div>
 
-          <div class="d-flex align-items-center ml-3">
-            <span class="material-icons"> schedule </span
-            ><span class="h3 mb-0 pl-1">Date: </span>
-            <span class="pl-1">Jan 20</span>
-          </div>
+        <div class="d-flex align-items-center ml-3">
+          <span class="material-icons"> schedule </span
+          ><span class="h3 mb-0 pl-1">Date: </span>
+          <span class="pl-1">{{ event.date | date }}</span>
+        </div>
 
-          <div class="ml-3">
-            <button class="btn btn-primary" [routerLink]="['meeting/123']">JOIN</button>
-          </div>
+        <div class="ml-3">
+          <button
+            *ngIf="showJoin(event.date)"
+            class="btn btn-primary"
+            [routerLink]="['meeting/' + event.id]"
+          >
+            JOIN
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<button mat-fab class="md-fab-bottom-right" (click)="addEvent()">
+  <mat-icon>add</mat-icon>
+</button>

@@ -6,8 +6,8 @@ import { DOCUMENT } from '@angular/common';
   selector: 'app-auth-button',
   template: `
     <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-      <span class="btn btn-neutral btn-icon" [routerLink]="['/dashboard']">
-        <span class="nav-link-inner--text">DASHBOARD</span>
+      <span class="btn btn-neutral btn-icon" [routerLink]="['/events']">
+        <span class="nav-link-inner--text">EVENTS</span>
       </span>
 
       <span

@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Event</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="eventForm" class="d-flex flex-column">
+    <mat-form-field class="w-100">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-hint>Give the title</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="w-100 my-3">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-hint>Give the description</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field class="w-100 my-3">
+      <mat-label>Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date"
+        [min]="minDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="w-100">
+      <mat-label>Skill</mat-label>
+      <mat-select formControlName="skill">
+        <mat-option
+          *ngFor="let category of categories$ | async"
+          [value]="category.id"
+          >{{ category.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    [disabled]="eventForm.invalid"
+    (click)="saveEvent()"
+    color="primary"
+  >
+    Save
+  </button>
+</mat-dialog-actions>
