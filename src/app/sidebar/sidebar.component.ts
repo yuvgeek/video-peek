@@ -26,6 +26,12 @@ export const ROUTES: RouteInfo[] = [
     icon: 'ni-events-02 text-yellow',
     class: '',
   },
+  {
+    path: '/categories',
+    title: 'CATEGORIES',
+    icon: 'ni-events-02 text-yellow',
+    class: '',
+  },
 ];
 
 @Component({
@@ -38,9 +44,10 @@ export class SidebarComponent implements OnInit {
   public isCollapsed = true;
 
   sideNavItems = [
-    { label: 'Events', route: '/events', icon: 'flag' },
+    { label: 'Public Events', route: '/events', icon: 'flag' },
+    { label: 'Your Events', route: '/my-events', icon: 'flag' },
     { label: 'Categories', route: '/categories', icon: 'category' },
-    { label: 'Account', route: '/profile', icon: 'account_circle' },
+    { label: 'Profile', route: '/profile', icon: 'account_circle' },
   ];
 
   constructor(private router: Router) {}

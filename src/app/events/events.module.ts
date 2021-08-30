@@ -26,6 +26,7 @@ import { EventsRoutingModule } from './events-routing.module';
     EventListComponent,
     MeetingComponent,
     UpdateEventComponent,
+    // CategoriesComponent,
     // SidebarComponent,
   ],
   imports: [

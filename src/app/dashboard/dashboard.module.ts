@@ -7,19 +7,23 @@ import { StatsComponent } from './components/stats/stats.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
     StatsComponent,
     DashboardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CategoriesComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     ReactiveFormsModule,
     NgbModule,
-    RouterModule
+    RouterModule,
+    MatProgressBarModule
   ],
 })
 export class DashboardModule {}
