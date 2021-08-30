@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
 import { EventsService } from 'src/app/services/events.service';
 import { UpdateEventComponent } from '../update-event/update-event.component';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import dayjs from 'dayjs';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-event-list',
@@ -12,9 +14,12 @@ import dayjs from 'dayjs';
   styleUrls: ['./event-list.component.scss'],
 })
 export class EventListComponent implements OnInit {
-  constructor(public eventsService: EventsService, public dialog: MatDialog) {}
+  constructor(public eventsService: EventsService, public dialog: MatDialog, public categoriesService: CategoriesService) {}
   events!: any[];
   isLoading = true;
+  category = 'all';
+  categories$!: Observable<any>;
+
 
   sideNavItems = [
     { label: 'Events', route: '/events', icon: 'flag' },
@@ -24,6 +29,10 @@ export class EventListComponent implements OnInit {
 
   ngOnInit(): void {
     dayjs.extend(isSameOrAfter);
+
+    this.categories$ = this.categoriesService.getCategories().pipe(
+      take(1)
+    );
 
     this.eventsService.refreshEvents$
       .pipe(
