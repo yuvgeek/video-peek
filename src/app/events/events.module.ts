@@ -6,9 +6,16 @@ import { EventListComponent } from './components/event-list/event-list.component
 import { MatSelectModule } from '@angular/material/select';
 import { MeetingComponent } from './components/meeting/meeting.component';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [EventListComponent, MeetingComponent],
-  imports: [CommonModule, EventsRoutingModule, MatSelectModule, FormsModule],
+  imports: [
+    CommonModule,
+    EventsRoutingModule,
+    MatSelectModule,
+    FormsModule,
+    MatDialogModule,
+  ],
 })
 export class EventsModule {}

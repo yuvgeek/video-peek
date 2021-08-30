@@ -1,4 +1,11 @@
-import { AfterViewInit, Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  SecurityContext,
+  ViewChild,
+} from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import Peer from 'peerjs';
 
 @Component({
@@ -13,6 +20,12 @@ export class MeetingComponent implements AfterViewInit {
   peerStream!: MediaStream;
   localStream!: MediaStream;
   isConnectionEstablished: boolean = false;
+  peers: string[] = [];
+
+  @ViewChild('peerlist')
+  peerList!: ElementRef;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngAfterViewInit() {
     this.peer = new Peer();
@@ -52,27 +65,33 @@ export class MeetingComponent implements AfterViewInit {
       nav.getUserMedia || nav.webkitGetUserMedia || nav.mozGetUserMedia;
 
     this.peer.on('call', (call) => {
-      var acceptsCall = confirm(
-        'Video call incoming, do you want to accept it ?'
-      );
-      if (acceptsCall) {
-        call.answer(this.localStream);
+      // var acceptsCall = confirm(
+      //   'Video call incoming, do you want to accept it ?'
+      // );
+      // if (acceptsCall) {
+      call.answer(this.localStream);
 
-        // Receive data
-        call.on('stream', (remoteStream) => {
-          // Store a global reference of the other user stream
-          this.peerStream = remoteStream;
-          // Display the stream of the other user in the peer-camera video element !
-          this.onReceiveStream(remoteStream, 'peer-camera');
-        });
+      // Receive data
+      call.on('stream', (remoteStream) => {
+        // Store a global reference of the other user stream
+        this.peerStream = remoteStream;
 
-        // Handle when the call finishes
-        call.on('close', function () {
-          alert('The video call has finished');
-        });
-      } else {
-        console.log('Call denied !');
-      }
+        const remotePeerId = `peer-camera-${remoteStream.id}`;
+        if (!this.peers.some((el) => el === remotePeerId)) {
+          this.peers.push(remotePeerId);
+        }
+
+        // Display the stream of the other user in the peer-camera video element !
+        this.onReceiveStream(remoteStream, remotePeerId);
+      });
+
+      // Handle when the call finishes
+      call.on('close', function () {
+        alert('The video call has finished');
+      });
+      // } else {
+      //   console.log('Call denied !');
+      // }
     });
   }
 
@@ -81,7 +100,12 @@ export class MeetingComponent implements AfterViewInit {
     var call = this.peer.call(this.receiverPeerId, this.localStream);
     call.on('stream', (stream) => {
       this.peerStream = stream;
-      this.onReceiveStream(stream, 'peer-camera');
+      const remotePeerId = `peer-camera-${stream.id}`;
+      if (!this.peers.some((el) => el === remotePeerId)) {
+        this.peers.push(remotePeerId);
+      }
+      this.onReceiveStream(stream, remotePeerId);
+
     });
   }
 

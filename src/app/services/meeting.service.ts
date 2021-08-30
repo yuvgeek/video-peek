@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { Message } from '../interfaces/message';
 import { filter} from 'rxjs/operators';
 
-export const WS_ENDPOINT = environment.wsEndpoint; // wsEndpoint: 'ws://localhost:8081'
 
 @Injectable({
   providedIn: 'root',
