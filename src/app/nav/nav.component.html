@@ -10,21 +10,33 @@
     <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
       <img src="./assets/logo/logo.png" />
     </a>
-    <button class="navbar-toggler" type="button" aria-controls="navbar_global">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="navbar_global"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse collapse" id="navbar_global">
+    <div
+      class="navbar-collapse collapse"
+      id="navbar_global"
+      [ngbCollapse]="isCollapsed"
+    >
       <div class="navbar-collapse-header">
         <div class="row">
           <div class="col-6 collapse-brand">
             <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png" />
+              <img src="./assets/logo/logo-red.png" />
             </a>
           </div>
           <div class="col-6 collapse-close">
             <button
               type="button"
               class="navbar-toggler"
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
               aria-controls="navbar_global"
             >
               <span></span>
@@ -35,7 +47,7 @@
       </div>
 
       <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item d-none d-lg-block ml-lg-4">
+        <li class="nav-item d-lg-block ml-lg-4">
           <app-auth-button></app-auth-button>
         </li>
       </ul>
