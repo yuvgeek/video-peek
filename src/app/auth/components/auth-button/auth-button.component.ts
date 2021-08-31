@@ -7,7 +7,7 @@ import { DOCUMENT } from '@angular/common';
   template: `
     <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
       <span class="btn btn-neutral btn-icon" [routerLink]="['/events']">
-        <span class="nav-link-inner--text">EVENTS</span>
+        <span class="nav-link-inner--text">GO TO EVENTS</span>
       </span>
 
       <span
