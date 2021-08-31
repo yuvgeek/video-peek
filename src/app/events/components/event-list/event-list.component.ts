@@ -14,32 +14,33 @@ import { Observable } from 'rxjs';
   styleUrls: ['./event-list.component.scss'],
 })
 export class EventListComponent implements OnInit {
-  constructor(public eventsService: EventsService, public dialog: MatDialog, public categoriesService: CategoriesService) {}
+  constructor(
+    public eventsService: EventsService,
+    public dialog: MatDialog,
+    public categoriesService: CategoriesService
+  ) {}
   events!: any[];
   isLoading = true;
   category = 'all';
   categories$!: Observable<any>;
 
-
   sideNavItems = [
     { label: 'Events', route: '/events', icon: 'flag' },
     { label: 'Categories', route: '/categories', icon: 'category' },
-    { label: 'Account', route: '/profile', icon: 'account_circle' }
+    { label: 'Account', route: '/profile', icon: 'account_circle' },
   ];
 
   ngOnInit(): void {
     dayjs.extend(isSameOrAfter);
 
-    this.categories$ = this.categoriesService.getCategories().pipe(
-      take(1)
-    );
+    this.categories$ = this.categoriesService.getCategories().pipe(take(1));
 
     this.eventsService.refreshEvents$
       .pipe(
         tap(() => {
           this.isLoading = true;
         }),
-        switchMap(() => this.eventsService.getEvents())
+        switchMap(() => this.eventsService.getEvents(this.category))
       )
       .subscribe((val) => {
         this.events = val;
@@ -57,5 +58,9 @@ export class EventListComponent implements OnInit {
 
   showJoin(eventDate: Date) {
     return dayjs(eventDate).isSame(new Date(), 'date');
+  }
+
+  getEvents() {
+    this.eventsService.refreshEvents$.next(true);
   }
 }

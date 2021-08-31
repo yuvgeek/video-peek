@@ -20,13 +20,15 @@
       <mat-label class="col-md-12">Choose Category</mat-label>
 
       <div class="col-md-3 bg-white">
-        <mat-form-field>
-          <mat-select [(ngModel)]="category">
+        <mat-form-field class="w-100">
+          <mat-select [(ngModel)]="category" (selectionChange)="getEvents()">
             <mat-option value="all">All</mat-option>
 
-            <mat-option [value]="category.id" *ngFor="let category of categories$ | async">{{
-              category.name
-            }}</mat-option>
+            <mat-option
+              [value]="category.id"
+              *ngFor="let category of categories$ | async"
+              >{{ category.name }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
       </div>

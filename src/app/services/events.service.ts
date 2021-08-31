@@ -11,9 +11,10 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents() {
+  getEvents(category: string = 'all') {
+    const params = { category };
     return this.http
-      .get('.netlify/functions/events')
+      .get('.netlify/functions/events', { params })
       .pipe(map((res: any) => res.data));
   }
 

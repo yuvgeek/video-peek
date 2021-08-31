@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit {
   public isCollapsed = true;
 
   sideNavItems = [
-    { label: 'Public Events', route: '/events', icon: 'flag' },
+    { label: 'Events', route: '/events', icon: 'flag' },
     { label: 'Your Events', route: '/my-events', icon: 'flag' },
     { label: 'Categories', route: '/categories', icon: 'category' },
     { label: 'Profile', route: '/profile', icon: 'account_circle' },
