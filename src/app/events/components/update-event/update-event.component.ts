@@ -48,7 +48,7 @@ export class UpdateEventComponent implements OnInit {
         )
       )
       .subscribe(() => {
-        this._snackBar.open('Category updated!', undefined, {
+        this._snackBar.open('Events updated!', undefined, {
           horizontalPosition: 'end',
           verticalPosition: 'bottom',
           duration: 3000,
