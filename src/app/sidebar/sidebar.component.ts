@@ -45,7 +45,7 @@ export class SidebarComponent implements OnInit {
 
   sideNavItems = [
     { label: 'Events', route: '/events', icon: 'flag' },
-    { label: 'Your Events', route: '/my-events', icon: 'flag' },
+    // { label: 'Schedule', route: '/schedule', icon: 'flag' },
     { label: 'Categories', route: '/categories', icon: 'category' },
     { label: 'Profile', route: '/profile', icon: 'account_circle' },
   ];

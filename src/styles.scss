@@ -427,3 +427,29 @@ body {
   bottom: 15px;
   background-color: #f5365c !important;
 }
+
+.video-section {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-evenly;
+  vertical-align: middle;
+  margin-top: 35px;
+}
+
+.video-section diva {
+  position: relative;
+  vertical-align: middle;
+  align-self: center;
+  border-radius: 10px;
+  overflow: hidden;
+  display: inline-block;
+  box-shadow: 0px 12px 22px rgba(0, 0, 0, 0.4);
+  background: #fff;
+  animation: show 0.4s ease;
+}
+
+.peers {
+  height: 100%;
+}

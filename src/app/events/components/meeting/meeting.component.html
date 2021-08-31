@@ -1,40 +1,51 @@
 <div class="header bg-gradient-danger pt-5 pt-md-8">
   <div class="container-fluid d-flex align-items-center">
     <div class="row">
-      <div class="col-lg-12 col-md-10">
-        <p class="text-white mt-0 mb-5 display-4">
-          Event details here
-        </p>
-      </div>
+      <!-- <div class="col-lg-12 col-md-10">
+        <p class="text-white mt-0 mb-5 display-4">Event details here</p>
+      </div> -->
     </div>
   </div>
 </div>
 
-My Id : {{ myPeerId }}
-<div class="row">
-  <div class="col-md-6">
-    <video
-      id="my-camera"
-      width="300"
-      height="300"
-      autoplay="autoplay"
-      muted="true"
-    ></video>
-  </div>
-  <div id="peer-list col-md-6">
+<div class="video-section" id="video-call">
+  <!-- <div class="my-video peers"> -->
+  <video
+    class="my-video peers"
+    id="my-camera"
+    autoplay="autoplay"
+    muted="true"
+  ></video>
+  <!-- </div> -->
+  <!-- <div id="peer-list" class="d-flex"> -->
+  <ng-container
+    *ngIf="
+      peers?.length !== undefined && peers.length > 0;
+      else waitingTemplate
+    "
+  >
     <ng-container *ngFor="let peer of peers">
-      <video
-        [id]="peer"
-        width="300"
-        height="300"
-        autoplay="autoplay"
-        muted="true"
-      ></video>
+      <div class="peers">
+        <video [id]="peer" autoplay="autoplay" muted="true"></video>
+      </div>
     </ng-container>
-  </div>
+  </ng-container>
+</div>
+<!-- </div> -->
+
+<div class="d-flex p-6 justify-content-center">
+  <span class="material-icons danger"> call_end </span>
+  <h3 class="pl-3 danger cursor-pointer" [routerLink]="['/events']">End Call</h3>
 </div>
 
-<input type="text" [(ngModel)]="receiverPeerId" />
+<ng-template #waitingTemplate>
+  <video
+    class="my-video peers placeholder-waiting"
+    autoplay="autoplay"
+    muted="true"
+  ></video>
+</ng-template>
 
+<!-- 
 <button (click)="connect()">Connect</button>
-<button *ngIf="isConnectionEstablished" (click)="call()">Call</button>
+<button *ngIf="isConnectionEstablished" (click)="call()">Call</button> -->

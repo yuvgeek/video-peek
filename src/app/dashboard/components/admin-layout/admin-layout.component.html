@@ -4,10 +4,22 @@
   <!-- Top navbar -->
   <!-- <app-nav></app-nav> -->
   <div class="row">
-    <div class="col-md-2 pr-0">
+    <div
+      class="pr-0 col-md-2"
+      [ngClass]="{
+        ' d-nonea': makeToggleScreen,
+        'col-md-2aa': !makeToggleScreen
+      }"
+    >
       <app-sidebar></app-sidebar>
     </div>
-    <div class="col-md-10 pl-0">
+    <div
+      class="pl-0 col-md-10"
+      [ngClass]="{
+        'col-md-12g full-screen': makeToggleScreen,
+        'col-md-10aa': !makeToggleScreen
+      }"
+    >
       <!-- Pages -->
       <app-navbar></app-navbar>
 
