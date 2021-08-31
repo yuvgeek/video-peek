@@ -153,7 +153,7 @@
   </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid bg-white custom-admin-sidebar">
   <!-- Toggler -->
   <button
     class="navbar-toggler"
@@ -163,15 +163,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <!-- Brand -->
-  <a
-    class="navbar-brand pt-0"
-    routerLinkActive="active"
-    [routerLink]="['/dashboard']"
-  >
-    <h2>Video Peek</h2>
+  <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/']">
+    <img src="./assets/logo/logo-red.png" width="150" />
   </a>
 </div>
 
+<div class="pt-3 h-100 bg-white">
 <mat-sidenav-container class="h-100 w-100">
   <mat-sidenav-content class="w-100 h-100">
     <mat-nav-list
@@ -181,6 +178,7 @@
         mat-list-item
         [routerLink]="nav.route"
         routerLinkActive="navActive"
+        class="my-2"
         *ngFor="let nav of sideNavItems"
       >
         <mat-icon class="mr-2">{{ nav.icon }}</mat-icon
@@ -189,3 +187,4 @@
     </mat-nav-list>
   </mat-sidenav-content>
 </mat-sidenav-container>
+</div>

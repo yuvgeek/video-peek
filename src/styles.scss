@@ -453,3 +453,12 @@ body {
 .peers {
   height: 100%;
 }
+
+.custom-sidebar {
+  padding-left: 0 !important;
+}
+
+.navActive {
+  background: rgba(63, 81, 181, 0.15);
+  color: #3f51b5;
+}
